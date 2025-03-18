@@ -16,6 +16,9 @@
 
             for (int i = 0; i < pesos.Length; i++)
             {
+                if (pesos[i] > pesoMaximo)
+                    continue; //Aqui há uma escolha: se a intenção é permitir que alguém abaixo do peso possa subir, este trecho resolve. Do contrário deve ser return 0;
+
                 if (pesoAtual + pesos[i] <= pesoMaximo && embarques < 2)
                 {
                     embarques++;
@@ -25,9 +28,6 @@
                 {
                     restantes.Add(pesos[i]);
                 }
-
-                if (pesos[i] > pesoMaximo)
-                    return 0;
             }
 
             if (embarques > 0)
@@ -45,7 +45,7 @@
             _viagens = 0;
             Console.WriteLine(ObterNumeroDeViagens([120]));
             _viagens = 0;
-            Console.WriteLine(ObterNumeroDeViagens([1, 100]));
+            Console.WriteLine(ObterNumeroDeViagens([1, 120]));
             _viagens = 0;
             Console.WriteLine(ObterNumeroDeViagens([12, 60, 77, 57, 45, 45]));
         }
